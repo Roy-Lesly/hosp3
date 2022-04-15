@@ -1,0 +1,60 @@
+{% extends 'radi/base_welcome_radi.html'%}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="container-fluid" id="forms">
+      <div class="card card-body" id="dept-form">
+
+        <table class="table table-borderless">
+          <thead class="border-bottom font-weight-bold">
+            <tr>
+              <td>ID</td>
+              <td>DEPT NAME</td>
+              <td>
+                <button class="btn btn-primary show-form">
+                  <span>Add Dept</span>
+                </button>
+              </td>
+              <td></td>
+            <tr>
+          </thead>
+          <tbody>
+          {% for dept in radi_dept %}
+            <tr>
+              <td>{{dept.id}}</td>
+              <td>{{dept.name}}</td>
+              <td>
+                <button class="dept-update">
+                  <a href="{% url 'radi:deptUpdate' dept.id %}" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg">Update</i>
+                  </a>
+                </button>
+              </td>
+
+              <td>
+                <button class="staff-delete" hidden>
+                  <a href="" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg">Delete</i>
+                  </a>
+                </button>
+              </td>
+
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="modal" id="modal-dept">
+        <div class="modal-dialog">
+          <div class="modal-content"></div>
+          <h3>test</h3>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block tail_js %}
+    <script src="{% static 'radi/radi_dept.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,338 @@
+{% extends "radi/ubase.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+{% endblock %}
+{% block page_title %}
+ Form
+{% endblock %}
+{% block content %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">{{ sub_title }}</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'radi:radiWelcome' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Register Patient</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-md-6" id="card-test">
+                <div class="card">
+                    <div class="card-body">
+                        <p>
+                            <h4>Instructions</h4>
+                            <li>To Register New Patient, Input patient Phone Number, Name or Serial Number in the <b>'Enter Query box'</b></li>
+                            <li>Click on <b>'New Patient'</b> or click on <b>"existing patient"</b> to register new exam</li>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--SEARCH PATIENT CARD-->
+            <div class="col-md-6" id="search-box">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <!--<h5 class="card-title col-md-12">Search Patient</h5>-->
+                            <!--Search by-->
+                            <div class="form-group col-md-5">
+                                <label><h5>Search By</h5></label>
+                                    <select class="form-control" type="text" name="query-select" id="query-type">
+                                        <!--<option value="">---------</option>-->
+                                        <option value="Phone">Phone Number</option>
+                                        <option value="un" hidden>US Number</option>
+                                        <option value="fn">Full Name</option>
+                                        <option value="sn">Serial Number</option>
+                                    </select>
+                            </div>
+                            <!--Query-->
+                            <div class="form-group col-md-7">
+                                <form id="search-form" autocomplete="off">
+                                    {% csrf_token %}
+                                    <label for="search-input"><h5>Enter Query</h5></label>
+                                    <input id="search-input" placeholder="" class="form-control" type="text" maxlength="10">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEARCH RESULT CARD -->
+            <div class="col-12 not-visible" id="result-box">
+                <div class="col-12"><center><h5>RESULTS</h5></center></div>
+                <div class="table-responsive" id="table-output">
+                    <table id="" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>Serial #</th>
+                            <th>Reg Num</th>
+                            <th>Full Name</th>
+                            <th>Address</th>
+                            <th>Age</th>
+                            <th>Sex</th>
+                            <th>Phone</th>
+                            <th>Date Created</th>
+                        </tr>
+                        </thead>
+                        <tbody id="table-body">
+
+                        </tbody>
+                    </table>
+                    <div id="div_no_data">
+                        <p><h3><center>No Result Found !!!</center></h3></p>
+                        <center><button id="btn_reg_pat" class="btn btn-secondary"><b>New Patient</b></button></center>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- PATIENT INFO CARD -->
+            <div class="col-md-12" id="card-patient">
+                <div class="card">
+                    <form method="post" action="" id="patient-form" class="form-horizontal">
+                         {% csrf_token %}
+                        <div class="card-body">
+                            <h4 class="card-title">Patient Info</h4>
+                            <div class="form-group row">
+                                <label for="id_sn" class="col-sm-3 text-right control-label col-form-label">Serial Number</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="id_sn" placeholder="" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_full_name_p" class="col-sm-3 text-right control-label col-form-label">Full Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="full_name_p" class="form-control" id="id_full_name_p" placeholder="" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_phone_p" class="col-sm-3 text-right control-label col-form-label">Phone</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="phone_p" class="form-control" id="id_phone_p" placeholder="" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_address_p" class="col-sm-3 text-right control-label col-form-label">Address</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="address_p" class="form-control" id="id_address_p" placeholder="" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_age_p" class="col-sm-3 text-right control-label col-form-label">Age</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="age_p" class="form-control" id="id_age_p" placeholder="" readonly>
+                                </div>
+                            </div>
+
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" id="submit-upat-form" class="btn btn-primary">Register Patient</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- EXAM INFO CARD -->
+            <div class="col-md-12" id="card-exam" >
+                <div class="card">
+                    <form method="post" action="" class="form-horizontal">
+                         {% csrf_token %}
+                        <div class="card-body">
+                            <h4 class="card-title">Exam Info</h4>
+                            <div class="form-group row">
+                                <label for="id_book_num" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Book Number</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" class="form-control" id="id_book_num" placeholder="" maxlength="5" required readonly>
+                                </div>
+                                <label for="id_ward" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Ward</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <select class="form-control" name="ward" required id="id_ward">
+                                      <option value="" selected></option>
+                                      <option value="OPD">OPD</option>
+                                      <option value="ANC">ANC</option>
+                                      <option value="MAT">Maternity</option>
+                                      <option value="LW">Labour / Delivery</option>
+                                      <option value="MW">Medical Ward</option>
+                                      <option value="SW">Surgical Ward</option>
+                                      <option value="CW">Childrens&#x27; Ward</option>
+                                      <option value="OTHER">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_prescriber" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Prescriber</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" class="form-control" id="id_prescriber" placeholder="" required>
+                                </div>
+                                <label for="id_patient" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">US Patient</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" class="form-control" id="id_patient" placeholder="" readonly required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_fees" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label" hidden>Fees</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4" hidden>
+                                    <input type="text" class="form-control" id="Id_fees" placeholder="" readonly required>
+                                </div>
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" id="submit-uexam-form" class="btn btn-primary">Register Exam</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- EXAM INFO CARD 2-->
+            <div class="col-md-12" id="card-exam2" >
+                <div class="card">
+                    <form method="post" action="" class="form-horizontal">
+                         {% csrf_token %}
+                        <div class="card-body">
+                            <h3 class="card-title">Register Patient Ultrasound Exam</h3>
+                            <p>
+                                <h5>Steps</h5>
+                                <ul>
+                                    <li><b>'Book Number':</b> Equivalent to the number on ultrasound register. e.g 2158 <i>=> <b>Input "2158" or "02158"</b></i></li>
+                                    <li><b>'Prescriber':</b> Medical Doctor, Nurse, Mid-wife, Screener and others. e.g Dr Nkwain <i>=> <b>Input dr nkwain</b></i></li>
+                                    <li><b>'Ward':</b> Select ward. e.g OPD</li>
+                                    <li><b>'US Patient':</b> This is the Unique Ultrasound Number of the Patient</li>
+                                </ul>
+                            </p>
+
+                            <div class="form-group row">
+                                <label for="id_book_num2" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Book Number</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" class="form-control" id="id_book_num2" placeholder="" maxlength="5" required>
+                                </div>
+                                <label for="id_ward2" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Ward</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <select class="form-control" name="ward" required id="id_ward2">
+                                      <option value="" selected></option>
+                                      <option value="OPD">OPD</option>
+                                      <option value="ANC">ANC</option>
+                                      <option value="MAT">Maternity</option>
+                                      <option value="LW">Labour / Delivery</option>
+                                      <option value="MW">Medical Ward</option>
+                                      <option value="SW">Surgical Ward</option>
+                                      <option value="CW">Childrens&#x27; Ward</option>
+                                      <option value="OTHER">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_prescriber2" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Prescriber</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" class="form-control" id="id_prescriber2" placeholder="" required>
+                                </div>
+                                <label for="id_patient2" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">US Patient</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" class="form-control" id="id_patient2" placeholder="" readonly required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_fees2" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label" hidden>Fees</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4" hidden>
+                                    <input type="text" class="form-control" id="Id_fees2" placeholder="" readonly required>
+                                </div>
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button type="submit" id="submit-uexam-form2" class="btn btn-primary">Register Exam</button>
+                                </div>
+                                <div class="card-body" hidden>
+                                    <button type="submit"  class="btn btn-primary">New Patient</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- PROCEDURE -->
+             <div class="col-md-12" id="card-exam-item">
+                <div class="card">
+                    <form method="post" action="" class="form-horizontal">
+                         {% csrf_token %}
+                        <div class="card-body">
+                            <h4 class="card-title">REGISTER PROCEDURE</h4>
+                            <div class="form-group row">
+                                <label for="id_uexam" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Book Number</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" class="form-control" name="book_num" id="id_uexam" placeholder="" required readonly>
+                                </div>
+                                <label for="id_paid_exam_item" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Amount Paid</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" name="paid-exam-item" class="form-control" id="id_paid_exam_item" placeholder="" maxlength="5" required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_category" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Category</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <select class="form-control" name="category" required id="id_category">
+                                        <option></option>
+                                        {% for cat in category %}
+                                        <option>{{ cat.category_name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <label for="id_utype" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Echo Test</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <select class="form-control" name="utype" required id="id_utype">
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group row" hidden>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                </div>
+                            </div>
+                            <div class="border-top">
+                                <div class="card-body">
+                                    <button id="submit-uexam-item-form" class="btn btn-primary">Create Echo Test</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <button id="new-upat" class="btn secondary float-right"><a href="{% url 'radi:echoPatCreate' %}"><h5><b>New Patient</b></h5></a></button>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{% static 'radi/radi_upat_create.js' %}" defer></script>
+{% endblock %}

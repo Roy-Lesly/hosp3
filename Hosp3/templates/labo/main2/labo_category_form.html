@@ -1,0 +1,21 @@
+{% extends 'labo/base_welcome_labo.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block page_content %}
+
+    <div class="container-fluid" id="forms">
+      <div class="card card-body" id="staff-form">
+        <a href="{% url 'labo:categoryList' %}" class="btn text-secondary px-0">
+          <i class="far fa-edit fa-lg">Category List</i>
+        </a>
+        <form action="" method="post" autocomplete="off">
+          {% csrf_token %}
+          {{ category_form|crispy }}
+          <br>
+          <button class="btn btn-success"><i class="fas fa-database"></i>Submit</button>
+        </form>
+      </div>
+    </div>
+
+{% endblock %}

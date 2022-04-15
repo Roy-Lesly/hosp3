@@ -1,0 +1,33 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" data-url="{% url 'regi:staffCreate' %}" action="" class="create-staff" autocomplete="off">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">DELETE STAFF DATA</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h4><center> You Are About To Delete Staff With Info</center></h4>
+        <label for="staff_name">Full Name</label>
+            <input type="text" value={{ staff_delete.full_name }} id="staff_name" readonly>
+        <hr>
+        <label for="staff_address">Address</label>
+            <input type="text" value={{ staff_delete.address }} id="staff_address" readonly>
+        <hr>
+        <label for="staff_phone">Phone Number</label>
+            <input type="text" value={{ staff_delete.Phone }} id="staff_phone" readonly>
+        <hr>
+        <label for="staff_id">ID</label>
+            <input type="text" value={{ staff_delete.id }} id="staff_id" readonly>
+    </div>
+    <div class="modal-footer">
+        <h6><center>Click out of this box To cancel</center></h6>
+        <button type="button" class="btn btn-success" id="submit-delete-staff"><i class="fas fa-database"></i>Delete</button>
+    </div>
+</form>
+
+{% block custom_js %}
+    <script src="{% static 'regi/staff_create.js' %}"></script>
+{% endblock %}

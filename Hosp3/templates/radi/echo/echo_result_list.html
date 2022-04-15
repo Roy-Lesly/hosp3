@@ -1,0 +1,105 @@
+{% extends "radi/ubase.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block page_title %}
+
+{% endblock %}
+
+{% block extra_style %}
+<link href="{% static 'dashboard/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"/>
+{% endblock extra_style %}
+
+{% block content %}
+
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">{{ sub_title }}</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'radi:radiWelcome' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">List</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        <!-- MODAL CARD -->
+        <div class="modal" id="modal-findings">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ page_title }} RESULT LIST</h5>
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered finding-table">
+                                <thead>
+                                    <tr>
+                                        <th id="echoRes_id" hidden>ID</th>
+                                        <th>Book #</th>
+                                        <th>Procedure</th>
+                                        <th>Patient</th>
+                                        <th>Staff</th>
+                                        <th>Findings</th>
+                                        <th>Date Created</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for echoRes in result %}
+                                    <tr class="tr">
+                                      <td class="id" hidden>{{ echoRes.id }}</td>
+                                      <td><b><h5>{{ echoRes.uexam.book_num }}</h5></b></td>
+                                      <td class="utest">{{ echoRes.u_test.utype }}</td>
+                                      <td class="uexam">{{ echoRes.uexam.patient.patient.full_name }}</td>
+                                      <td class="full_name">{{ echoRes.staff.full_name }}</td>
+                                      <td class="findings" style="max-width: 100px; text-overflow: ellipse; overflow: hidden; white-space: nowrap;">{{ echoRes.findings }}</td>
+                                      <td class="date_created">{{ echoRes.date_created }}</td>
+                                      <td class="">
+                                          <a href="{% url 'radi:echoResultUpdate' echoRes.id %}" class="btn btn-secondary p-1">
+                                              <i class="far fa-edit fa-sm"></i>
+                                          </a>
+                                      </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#zero_config').DataTable();
+    });
+</script>
+<script src="{% static 'dashboard/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'dashboard/js/datatables.min.js' %}"></script>
+<script src="{% static 'radi/echo_list_detail_modal.js' %}"></script>
+
+{% endblock %}

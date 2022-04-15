@@ -1,0 +1,138 @@
+{% extends "radi/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+{% endblock %}
+{% block page_title %}
+ Form
+{% endblock %}
+{% block content %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">{{ sub_title }}</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'radi:radiWelcome' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Register Results</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <!-- ============================================================== -->
+        <!-- Start Page Content -->
+        <!-- ============================================================== -->
+        <!--<div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="">
+                            {% csrf_token %}
+
+                        </form>
+                    </div>
+                </div>
+            </div>-->
+
+            <!-- PATIENT INFO CARD -->
+            <div class="col-md-12">
+                <div class="card">
+                    <form method="post" action="" id="patient-form" class="form-horizontal">
+                         {% csrf_token %}
+                        <div class="card-body">
+                            <h4 class="card-title">Update Results</h4>
+                            <div class="form-group row">
+                                <label for="id_lexam" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Book Num</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    {{ form.ltype }}
+                                </div>
+                                <label for="id_staff" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Staff</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    {{ form.staff }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_category" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Category</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    {{ form.category }}
+                                </div>
+                                <label for="id_paid" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Paid Fee</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    {{ form.paid }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_ltype" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Lab Test</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    {{ form.lexam }}
+                                </div>
+                                <label for="id_fee" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Test Fee</label>
+                                <div class="col-xs-12 col-sm-9 col-md-4">
+                                    <input type="text" class="form-control" id="id_fee" placeholder="" readonly required>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="id_findings" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">FINDINGS</label>
+                                <div class="col-xs-12 col-sm-9 col-md-10">
+                                    {{ form.findings }}
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <button type="submit" id="submit-update" class="btn btn-primary">Update Results</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block extra_script %}
+    <script>
+            //***********************************//
+            // For select 2
+            //***********************************//
+            $(".select2").select2();
+
+            /*colorpicker*/
+            $('.demo').each(function () {
+                $(this).minicolors({
+                    control: $(this).attr('data-control') || 'hue',
+                    position: $(this).attr('data-position') || 'bottom left',
+
+                    change: function (value, opacity) {
+                        if (!value) return;
+                        if (opacity) value += ', ' + opacity;
+                        if (typeof console === 'object') {
+                            console.log(value);
+                        }
+                    },
+                    theme: 'bootstrap'
+                });
+
+            });
+            /*datwpicker*/
+            jQuery('.mydatepicker').datepicker();
+            jQuery('#datepicker-autoclose').datepicker({
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            var quill = new Quill('#editor', {
+                theme: 'snow'
+            });
+        </script>
+    <script src="{% static 'radi/radi_uresult_create.js' %}" defer></script>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'cons/base_welcome_cons.html'%}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="container-fluid" id="forms">
+      <div class="card card-body" id="staff-form">
+        <button class="btn btn-primary show-form">
+          <span>Add Staff</span>
+        </button>
+        <table class="table table-borderless">
+          <thead class="border-bottom font-weight-bold">
+            <tr>
+              <td>ID</td>
+              <td>FULL NAME</td>
+              <td>PHONE</td>
+              <td>ADDRESS</td>
+              <td>TITLE</td>
+              <td>
+                <a href="{% url 'cons:staffCreate' %}" class="btn text-secondary px-0">
+                  <i class="far fa-edit fa-lg"></i>
+                </a>
+              </td>
+              <td></td>
+            <tr>
+          </thead>
+          <tbody>
+          {% for staff in cons_staff%}
+            <tr>
+              <td>{{staff.id}}</td>
+              <td>{{staff.full_name}}</td>
+              <td>{{staff.Phone}}</td>
+              <td>{{staff.address}}</td>
+              <td>{{staff.title}}</td>
+
+              <td>
+                <button class="staff-update">
+                  <a href="{% url 'cons:staffUpdate' staff.id %}" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg">Update</i>
+                  </a>
+                </button>
+              </td>
+
+              <td>
+                <button class="staff-delete">
+                  <a href="{% url 'cons:staffDelete' staff.id %}" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg">Delete</i>
+                  </a>
+                </button>
+              </td>
+
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="modal" id="modal-staff">
+        <div class="modal-dialog">
+          <div class="modal-content"></div>
+          <h3>test</h3>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{% static 'cons/staff_create.js' %}"></script>
+{% endblock %}

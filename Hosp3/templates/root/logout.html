@@ -1,0 +1,31 @@
+{% extends 'root/base.html' %}
+
+{% load crispy_forms_tags%}
+
+{% load static %}
+
+{% block nav %}
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto active" href="{% url 'root:rootHome' %}">Home</a></li>
+          <li><a class="nav-link scrollto" href="#doctors">Login</a></li>
+          <li class="dropdown"><a href="#"><span>Options</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+                <li><a href="#">Options</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+{% endblock %}
+
+{% block page_content %}
+
+    <div>logged out</div>
+
+        <button type="submit" class="btn btn-outline-success">Login</button>
+
+    </form>
+
+{% endblock %}

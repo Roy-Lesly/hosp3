@@ -1,0 +1,133 @@
+{% extends "radi/ubase.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+{% endblock %}
+{% block page_title %}
+ Tables
+{% endblock %}
+
+{% block extra_style %}
+<link href="{% static 'dashboard/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"/>
+{% endblock extra_style %}
+
+{% block content %}
+
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">{{ sub_title }}</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'radi:radiWelcome' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Handing List</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <button class="btn show-form">
+                          <span><a href="{% url 'radi:handingCreate' %}">Hand Over Shift</a></span>
+                        </button>
+                        <h5 class="card-title"><center>HANDING OVER HISTORY</center></h5>
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th hidden>ID #</th>
+                                    <th>Date</th>
+                                    <th>Shift</th>
+                                    <th>Stats</th>
+                                    <th>Lines</th>
+                                    <th>Mach1</th>
+                                    <th></th>
+                                    <th>Mach2</th>
+                                    <th></th>
+                                    <th>Mach3</th>
+                                    <th></th>
+                                    <th>Dev1</th>
+                                    <th></th>
+                                    <th>Dev2</th>
+                                    <th></th>
+                                    <th>Dev3</th>
+                                    <th></th>
+                                    <th>Other1</th>
+                                    <th>Other2</th>
+                                    <th>Other3</th>
+                                    <th>Dept</th>
+                                    <th>Staff</th>
+                                    <th>Remarks</th>
+                                    <th>Edit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for handing in radi_handing %}
+                                    <tr>
+                                      <td hidden><a href=""><b><h5>{{ handing.id }}</h5></b></a></td>
+                                      <td>{{ handing.date_created.date }}</td>
+                                      <td>{{ handing.shift }}</td>
+                                      <td>{{ handing.statistics }}</td>
+                                      <td>{{ handing.lines }}</td>
+                                      <td>{{ handing.machine1 }}</td>
+                                      <td>{{ handing.state1 }}</td>
+                                      <td>{{ handing.machine2 }}</td>
+                                      <td>{{ handing.state2 }}</td>
+                                      <td>{{ handing.machine3 }}</td>
+                                      <td>{{ handing.state3 }}</td>
+                                      <td>{{ handing.device1 }}</td>
+                                      <td>{{ handing.state4 }}</td>
+                                      <td>{{ handing.device2 }}</td>
+                                      <td>{{ handing.state5 }}</td>
+                                      <td>{{ handing.device3 }}</td>
+                                      <td>{{ handing.state6 }}</td>
+                                      <td>{{ handing.other1 }}</td>
+                                      <td>{{ handing.other2 }}</td>
+                                      <td>{{ handing.other3 }}</td>
+                                      <td>{{ handing.department }}</td>
+                                      <td>{{ handing.staff }}</td>
+                                      <td>{{ handing.remarks }}</td>
+
+                                      <td class="">
+                                          <a href="{% url 'regi:patUpdate' handing.id %}" class="btn btn-secondary p-1">
+                                              <i class="far fa-edit fa-sm"></i>
+                                          </a>
+                                      </td>
+                                    </tr>
+                                  {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block extra_script %}
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#zero_config').DataTable();
+    });
+</script>
+<script src="{% static 'dashboard/js/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'dashboard/js/datatables.min.js' %}"></script>
+
+{% endblock %}

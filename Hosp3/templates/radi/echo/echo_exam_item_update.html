@@ -1,0 +1,100 @@
+{% extends "radi/ubase.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+{% endblock %}
+{% block page_title %}
+ Form
+{% endblock %}
+{% block content %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">{{ sub_title }}</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'radi:radiWelcome' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Update Procedure</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+
+    <!-- PATIENT INFO CARD -->
+    <div class="col-md-12">
+        <div class="card">
+            <form method="post" action="" id="patient-form" class="form-horizontal">
+                 {% csrf_token %}
+                <div class="card-body">
+
+                    <h4 class="card-title">Update Procedure</h4>
+                    <div id="div_id_staff" class="form-group">
+                        <label for="id_id" class=" requiredField" hidden>PROCEDURE ID</label>
+                        <input class="form-control" id="id_id" type="text" value={{ form.id }} readonly hidden>
+                    </div>
+                    <div id="div_id_uexam" class="row form-group">
+                        <div class="col-md-6">
+                            <label for="id_uexam" class=" requiredField">EXAM NUMBER and PATIENT NAME</label>
+                            <select name="uexam" class="select form-control" required id="id_uexam">
+                                <option value={{ form.uexam }}>{{ form.uexam }}</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_uexam" class=" requiredField">EXAM NUMBER</label>
+                            <input class="form-control" type="text" id="uexam" value={{ form.uexam }} readonly>
+                        </div>
+                    </div>
+                    <div id="div_id_cat" class="row form-group">
+                        <div class="col-md-6">
+                            <label for="id_category" class=" requiredField">CATEGORY</label>
+                            <div class="">
+                                <select name="pat" class="select form-control" required id="id_category">
+                                    <option value="" selected>----------</option>
+                                    {% for cat in category %}
+                                    <option>{{ cat.category_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_paid" class=" requiredField">PAID</label>
+                            <input type="text" id="id_paid" value={{ form.paid }} class="form-control" maxlength="5">
+                        </div>
+                    </div>
+                    <div id="div_id_utype" class="row form-group">
+                        <div class="col-md-6">
+                            <label for="id_utype" class=" requiredField">TYPE OF TEST</label>
+                            <div class="">
+                                <select class="form-control" name="utype" required id="id_utype">
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <button type="submit" id="submit-update-exam-item" class="btn btn-primary">Update Procedure</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{% static 'radi/radi_uexam_item_create.js' %}" defer></script>
+{% endblock %}

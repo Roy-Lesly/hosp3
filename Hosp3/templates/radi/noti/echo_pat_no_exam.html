@@ -1,0 +1,141 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+    <div class="modal-header">
+        <h3 class="modal-title"><center>ECHO PATIENTS WITH NO EXAM</center></h3>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <!-- PATIENT TABLE -->
+    <div class="row" id="pat-table-modal">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ page_title }} EXAM LIST</h5>
+                    <div class="table-responsive">
+                        <table id="zero_config" class="table table-striped table-bordered">
+                            <thead>
+                            <tr>
+                                <th>SN #</th>
+                                <th>UN #</th>
+                                <th>Full Name</th>
+                                <th>Address</th>
+                                <th>Sex</th>
+                                <th>Age</th>
+                                <th>Phone</th>
+                                <th>Date Created</th>
+                            </tr>
+                            </thead>
+                            <tbody id="id_tbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXAM INFO CARD -->
+    <div class="col-md-12" id="card-exam-modal1">
+        <div class="card">
+            <form method="post" action="" class="form-horizontal">
+                 {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">Echo Exam Info</h4>
+                    <div class="form-group row">
+                        <label for="id_book_num_modal" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Book Number</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                            <input type="text" class="form-control" id="id_book_num_modal" placeholder="" maxlength="5" required>
+                        </div>
+                        <label for="id_ward_modal" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Ward</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                            <select class="form-control" name="ward" required id="id_ward_modal">
+                              <option value="" selected></option>
+                              <option value="OPD">OPD</option>
+                              <option value="ANC">ANC</option>
+                              <option value="MAT">Maternity</option>
+                              <option value="LW">Labour / Delivery</option>
+                              <option value="MW">Medical Ward</option>
+                              <option value="SW">Surgical Ward</option>
+                              <option value="CW">Childrens&#x27; Ward</option>
+                              <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_prescriber_modal" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Prescriber</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                            <input type="text" class="form-control" id="id_prescriber_modal" placeholder="" maxlength="15" required>
+                        </div>
+                        <label for="id_patient_modal" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label">Patient US_ID</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                            <input type="text" class="form-control" id="id_patient_modal" placeholder="" readonly required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_fees_modal" class="col-xs-12 col-sm-3 col-md-2 text-right control-label col-form-label" hidden>Fees</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4" hidden>
+                            <input type="text" class="form-control" id="id_fees_modal" placeholder="" readonly required>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <button type="submit" id="submit-uexam-form-modal" class="btn btn-primary">Register Exam</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- PROCEDURE -->
+    <div class="col-md-12" id="card-exam-item-modal1">
+        <div class="card">
+            <form method="post" action="" class="form-horizontal">
+                 {% csrf_token %}
+                <div class="card-body">
+                    <h4 class="card-title">REGISTER PROCEDURE</h4>
+                    <div class="form-group row">
+                        <label for="id_uexam_modal" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Book Number</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                            <input type="text" class="form-control" name="book_num_modal" id="id_uexam_modal" placeholder="" required readonly>
+                        </div>
+                        <label for="id_paid_exam_item_modal" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Amount Paid</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                            <input type="text" name="paid-exam-item_modal" class="form-control" id="id_paid_exam_item_modal" placeholder="" maxlength="5" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="id_category_modal" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Category</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                            <select class="form-control" name="category" required id="id_category_modal">
+
+                            </select>
+                        </div>
+                        <label for="id_utype_modal" class="col-xs-12 col-sm-3 col-md-2 text-center control-label col-form-label">Echo Test</label>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                            <select class="form-control" name="utype_modal" required id="id_utype_modal">
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row" hidden>
+                        <div class="col-xs-12 col-sm-9 col-md-4">
+                        </div>
+                    </div>
+                    <div class="border-top">
+                        <div class="card-body">
+                            <button id="submit-uexam-item-form-modal" class="btn btn-primary">Create Echo Test</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+<script src="{% static 'dashboard/header.js' %}"></script>

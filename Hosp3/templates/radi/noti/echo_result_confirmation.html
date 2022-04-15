@@ -1,0 +1,42 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" data-url="{% url 'radi:staffCreate' %}" action="" class="create-staff" autocomplete="off">
+    {% csrf_token %}
+    <div class="modal-header" id="heada1">
+        <h3 class="modal-title"><center>DO YOU WISH TO WRITE A DETAIL REPORT</center></h3>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-header" id="heada2">
+        <h3 class="modal-title"><center>SELECT FORM FOR RESULTS</center></h3>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="row" id="res_confirm">
+            <div class="col-6">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">NO</button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-primary" id="btn-yes">YES</button>
+            </div>
+        </div>
+        <div class="row" id="res_form">
+            <div class="col p-1"><input id="form_obs" class="btn btn-secondary result-form-type" type="button" value="OBSTETRIC"></div>
+            <div class="col p-1"><input id="form_abd" class="btn btn-secondary result-form-type" type="button" value="ABDOMINAL"></div>
+            <div class="col p-1"><input id="form_fpe" class="btn btn-secondary result-form-type" type="button" value="F-PELVIC"></div>
+            <div class="col p-1"><input id="form_mpe" class="btn btn-secondary result-form-type" type="button" value="M-PELVIC"></div>
+            <div class="col p-1"><input id="form_spt" class="btn btn-secondary result-form-type" type="button" value="SMALL-PARTS"></div>
+            <div class="col p-1"><input id="form_car" class="btn btn-secondary result-form-type" type="button" value="CARDIAC"></div>
+            <div class="col p-1"><input id="form_dop" class="btn btn-secondary result-form-type" type="button" value="DOPPLER"></div>
+        </div>
+        <hr>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</form>
+    <script src="{% static 'radi/radi_uresult_create.js' %}" defer></script>

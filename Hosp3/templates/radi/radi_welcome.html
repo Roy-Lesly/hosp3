@@ -1,0 +1,41 @@
+{% extends 'radi/base_welcome_radi.html'%}
+{% load static %}
+
+
+  {% block page_content %}
+
+    <div class="container-fluid">
+        <h1 class="mt-4">{{ sub_title }}</h1>
+        <p>
+            <h5>Ultrasound imaging (sonography) uses high-frequency sound waves to view inside the body.
+                Because ultrasound images are captured in real-time,
+                they can also show movement of the body's internal organs as well as blood flowing through the blood vessels.
+                Unlike X-ray imaging, there is no ionizing radiation exposure associated with ultrasound imaging.
+                In an ultrasound exam, a transducer (probe) is placed directly on the skin or inside a body opening.
+                A thin layer of gel is applied to the skin so that the ultrasound waves are transmitted from the transducer through the gel into the body.
+            </h5>
+        </p>
+        <p>
+            <h3>Introduction</h3>
+            <h5>Each Patient has a unique <i>Registration Number, Ultrasound Number</i> and/or <i>Xray Number</i></h5>
+            <ul>
+                <li>Registration number: It is automatically generated. Format: xxxxxxxxxx, e.g 22020001.</li>
+                <li>Ultrasound Number: e.g 00001_22.  The 5 digit number '00001', corresponds to the Ultrasound book number</li>
+                <li>Xray Number: e.g 00001_22.  The 5 digit number '00001', corresponds to the Xray book number</li>
+            </ul>
+
+            <h3>Instructions</h3>
+            <h5>Each page has a set of instructions and navigation tips, Do well to follow them properly</h5>
+            <h5>For consistency and ease of retrival, the following are core information elements to get</h5>
+            <ul>
+                <li>Telephone number: This is in the format xxxxxxxxx, e.g 671010304</li>
+                <li>Date of Birth: This is in the format mm-dd-yyyy e.g 12-31-2000</li>
+                <li>First Name: e.g Ngotubu</li>
+            </ul>
+        </p>
+        <p>
+
+        </p>
+    </div>
+
+  {% endblock %}

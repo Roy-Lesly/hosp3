@@ -1,0 +1,92 @@
+{% extends 'radi/base_welcome_radi.html'%}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="container-fluid" id="forms">
+      <div class="card card-body" id="handing-form">
+
+        <table class="table table-borderless">
+          <thead class="border-bottom font-weight-bold">
+            <tr>
+              <td>ID</td>
+              <td>Date</td>
+              <td>SHIFT</td>
+              <td>Mach.1</td>
+              <td>state1</td>
+              <td>Mach.2</td>
+              <td>state2</td>
+              <td>Mach.3</td>
+              <td>state3</td>
+              <td>device1</td>
+              <td>state</td>
+              <td>device2</td>
+              <td>state</td>
+              <td>device3</td>
+              <td>state</td>
+              <td>Staff</td>
+              <td>Remarks</td>
+              <td>
+                <button class="btn btn-primary show-form">
+                  <span>Hand Over Shift</span>
+                </button>
+              </td>
+              <td></td>
+            <tr>
+          </thead>
+          <tbody>
+          {% for handing in radi_handing %}
+            <tr>
+              <td>{{handing.id}}</td>
+              <td>{{handing.date_created.date}}</td>
+              <td>{{handing.shift}}</td>
+              <td>{{handing.machine1}}</td>
+              <td>{{handing.state1}}</td>
+              <td>{{handing.machine2}}</td>
+              <td>{{handing.state2}}</td>
+              <td>{{handing.machine3}}</td>
+              <td>{{handing.state3}}</td>
+              <td>{{handing.device1}}</td>
+              <td>{{handing.state4}}</td>
+              <td>{{handing.device2}}</td>
+              <td>{{handing.state5}}</td>
+              <td>{{handing.device3}}</td>
+              <td>{{handing.state6}}</td>
+              <td>{{handing.staff}}</td>
+              <td>{{handing.remarks}}</td>
+
+
+              <td>
+                <button class="staff-update">
+                  <a href="{% url 'radi:handingUpdate' handing.id %}" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg">Update</i>
+                  </a>
+                </button>
+              </td>
+
+              <td hidden>
+                <button class="staff-delete">
+                  <a href="{% url 'radi:handingDelete' handing.id %}" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg">Delete</i>
+                  </a>
+                </button>
+              </td>
+
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="modal" id="modal-handing">
+        <div class="modal-dialog">
+          <div class="modal-content"></div>
+          <h3>test</h3>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block tail_js %}
+    <script src="{% static 'radi/radi_handing.js' %}"></script>
+{% endblock %}

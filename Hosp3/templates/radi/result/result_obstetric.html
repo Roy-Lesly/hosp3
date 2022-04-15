@@ -1,0 +1,326 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- RESULT INFORMATION -->
+        <div class="col-md-12" id="card-patient">
+            <div class="card">
+                <form method="post" action="" id="patient-form" class="form-horizontal">
+                     {% csrf_token %}
+                    <div class="card-body">
+                        <h4 class="card-title">OBSTETRIC RESULTS</h4>
+
+                        <form action="">
+                            <p hidden>
+                                {{ csrf_token }}
+                            </p>
+                            <!-- ====== NAME, BOOK_NUM, UN, SN, AGE, SEX =====-->
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{ form.full_name|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.book_num|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.un|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.sn|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.sex|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.age|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- ====== ADDRESS, PHONE, STAFF, DATE_CREATED, PRESC =====-->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form.address|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.phone|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.staff|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.date_created|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.presc|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- ====== INDICATION, LMP =====-->
+                            <div class="row">
+                                <div class="col-md-8">
+                                    {{ form.indic|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.lmp|as_crispy_field }}
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- ====== NUM FET, PRESENTATION, FHR =====-->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form.numfet|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ form.presen|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.fhr|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- ====== FETAL MOVEMENT =====-->
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form.fetmov1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-9">
+                                    {{ form.fetmov2|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{ form.afi1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.afi2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.afi3|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.appearance|as_crispy_field }}
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- ========== FETUS A ========= -->
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{ form.gs1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.crl1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.bpd1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.hc1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.ac1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.fl1|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- ========== FETUS B ========= -->
+                            <div class="row" id="fetus-b">
+                                <div class="col-md-2">
+                                    {{ form.gs2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.crl2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.bpd2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.hc2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.ac2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.fl2|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- ========== FETUS C ========= -->
+                            <div class="row" id="fetus-c">
+                                <div class="col-md-2">
+                                    {{ form.gs3|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.crl3|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.bpd3|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.hc3|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.ac3|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.fl3|as_crispy_field }}
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- ====== GA, EFW and EDD =====-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.ga1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.ga2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-5">
+                                    {{ form.edd|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    {{ form.efwa1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3">
+                                    {{ form.efwa2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3 efw2">
+                                    {{ form.efwb1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-3 efw2">
+                                    {{ form.efwb2|as_crispy_field }}
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- ====== FETAL NORMALITY =====-->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form.fetnorm1|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form.fetnorm2|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- ======== PLACENTA / ADD COM ========= -->
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.placen1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.placen2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ form.placen3|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ form.placen4|as_crispy_field }}
+                                </div>
+                                <div class="col-md-8">
+                                    {{ form.placen5|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div id="com1" class="row">
+                                <div class="col-md-12">
+                                    {{ form.addcom1|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="addcom2" class="btn btn-secondary">Add Comment Line 2</button>
+                            </div>
+                            <div id="com2" class="row">
+                                <div class="col-md-12">
+                                    {{ form.addcom2|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="addcom3" class="btn btn-secondary">Add Comment Line 3</button>
+                                <button id="clear-com2" class="btn btn-secondary">Remove Comment Line 2</button>
+                            </div>
+                            <div id="com3" class="row">
+                                <div class="col-md-12">
+                                    {{ form.addcom3|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="clear-com3" class="btn btn-secondary">Remove Comment Line 3</button>
+                                <button id="clear-all-com" class="btn btn-secondary">Remove All Comment Lines</button>
+                            </div>
+                            <!-- ======== BPS ========= -->
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    {{ form.bps1|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.bps2|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.bps3|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.bps4|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.bps5|as_crispy_field }}
+                                </div>
+                                <div class="col-md-2">
+                                    {{ form.bpst|as_crispy_field }}
+                                </div>
+                            </div>
+                            <!-- ======== impression ========= -->
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{ form.imp1|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="add-imp1" class="btn btn-secondary">Add Impression Line 2</button>
+                            </div>
+                            <div class="row" id="imp-line-2">
+                                <div class="col-md-12">
+                                    {{ form.imp2|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="add-imp2" class="btn btn-secondary">Add Impression Line 3</button>
+                                <button id="clear2" class="btn btn-secondary">Remove Line 2</button>
+                            </div>
+                            <div class="row" id="imp-line-3">
+                                <div class="col-md-12">
+                                    {{ form.imp3|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="add-imp3" class="btn btn-secondary">Add Impression Line 4</button>
+                                <button id="clear3" class="btn btn-secondary">Remove Line 3</button>
+                            </div>
+                            <div class="row" id="imp-line-4">
+                                <div class="col-md-12">
+                                    {{ form.imp4|as_crispy_field }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button id="clear4" class="btn btn-secondary">Remove Line 4</button>
+                                <button id="clear5" class="btn btn-secondary">Remove All Lines</button>
+                            </div>
+                        </form>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="submit" id="submit-obs-form" class="btn btn-primary">Submit Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'radi/radi_uresult_create.js' %}" defer></script>

@@ -1,0 +1,19 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" data-url="{% url 'labo:categoryCreate' %}" action="" class="create-staff" autocomplete="off">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">Create Category</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        {{ category_form|crispy }}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="submit-create-category"><i class="fas fa-database"></i>Submit</button>
+    </div>
+</form>
+
+<script src="{% static 'labo/category_create.js' %}"></script>

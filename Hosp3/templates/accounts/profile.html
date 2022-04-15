@@ -1,0 +1,54 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %} 
+
+	<!-- [ auth-signin ] start -->
+	<div class="auth-wrapper">
+		<div class="auth-content">
+			<div class="card">
+				<div class="row align-items-center text-center">
+					<div class="col-md-12">
+						<div class="card-body">
+
+							<!--<img src="/static/assets/images/logo-dark.png" alt="" class="img-fluid mb-4">-->
+							<h3>Logged In as</h3>
+							<h1>{{ user.username }}</h1>
+								<br><br>
+							{% if user.username == 'zane' %}
+									<p class="mb-0 text-muted"><a href='{% url "finance:welcome" %}' class="f-w-400"><h6>Main Page</h6></a></p>
+							{% elif user.username == 'Finance' %}
+									<p class="mb-0 text-muted"><a href='{% url "finance:welcome" %}' class="f-w-400"><h4>Main Page</h4></a></p>
+							{% elif user.username == 'Admin' %}
+									<p class="mb-0 text-muted"><a href='{% url "finance:welcome" %}' class="f-w-400"><h4>Main Page</h4></a></p>
+							{% elif user.username == 'Registration' %}
+									<p class="mb-0 text-muted"><a href='{% url "regis:regisWelcome" %}' class="f-w-400"><h4>Main Page</h4></a></p>
+							{% elif user.username == 'Radiology' %}
+									<p class="mb-0 text-muted"><a href='{% url "radio:radioWelcome" %}' class="f-w-400"><h4>Main Page</h4></a></p>
+							{% elif user.username == 'Pharmacy' %}
+									<p class="mb-0 text-muted"><a href='{% url "pharm:pharmWelcome" %}' class="f-w-400"><h4>Main Page</h4></a></p>
+							{% elif user.username == 'Laboratory' %}
+									<p class="mb-0 text-muted"><a href='{% url "labo:laboWelcome" %}' class="f-w-400"><h4>Main Page</h4></a></p>
+							{% elif user.username == 'Ward' %}
+									<p class="mb-0 text-muted"><a href='{% url "ward:wardWelcome" %}' class="f-w-400"><h4>Main Page</h4></a></p>
+							{% elif user.username == 'Technical' %}
+									<p class="mb-0 text-muted">><a href='{% url "tsd:tsdWelcome" %}' class="f-w-400"><h4>Main Page</h4></a></p>
+							{% endif %}
+							<p> <br /> </p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- [ auth-signin ] end -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+	<script src="/static/assets/js/waves.min.js"></script>
+
+{% endblock javascripts %} 

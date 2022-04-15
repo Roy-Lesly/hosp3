@@ -1,0 +1,63 @@
+{% extends 'labo/base_welcome_labo.html'%}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="container-fluid" id="forms">
+      <div class="card card-body" id="category-form">
+        <button class="btn btn-primary show-form">
+          <span>Add Category</span>
+        </button>
+        <table class="table table-borderless">
+          <thead class="border-bottom font-weight-bold">
+            <tr>
+              <td>ID</td>
+              <td>CATEGORY NAME</td>
+              <td>
+                <a href="{% url 'labo:categoryCreate' %}" class="btn text-secondary px-0">
+                  <i class="far fa-edit fa-lg"></i>
+                </a>
+              </td>
+              <td></td>
+            <tr>
+          </thead>
+          <tbody>
+          {% for category in labo_category %}
+            <tr>
+              <td>{{category.id}}</td>
+              <td>{{category.category_name}}</td>
+
+              <td>
+                <button class="category-update">
+                  <a href="" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg">Update</i>
+                  </a>
+                </button>
+              </td>
+
+              <td>
+                <button class="category-delete">
+                  <a href="" class="btn text-secondary px-0">
+                    <i class="far fa-edit fa-lg">Delete</i>
+                  </a>
+                </button>
+              </td>
+
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="modal" id="modal-category">
+        <div class="modal-dialog">
+          <div class="modal-content"></div>
+          <h3>test</h3>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_js %}
+    <script src="{% static 'labo/category_create.js' %}"></script>
+{% endblock %}

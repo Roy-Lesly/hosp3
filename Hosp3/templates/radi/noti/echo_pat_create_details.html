@@ -1,0 +1,38 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" data-url="{% url 'radi:staffCreate' %}" action="" class="create-staff" autocomplete="off">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h3 class="modal-title"><center>PATIENT DETAIL INFORMATION</center></h3>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div>{{ upat }}</div>
+
+    <div class="modal-body">
+        <h4><center>Serial Number</center></h4>
+        <label hidden>SN</label>
+            <center><input type="text" value={{ sn }} readonly></center>
+        <hr>
+
+        <h4><center>Ultrasound Number</center></h4>
+        <label hidden>US#</label>
+        <center><h3>{{ us_num }}</h3></center>
+        <hr>
+
+        <h4><center>All Exam Number</center></h4>
+        <label hidden>ALL Exams</label>
+        {% for ex in exam_num %}
+            <p><center><input type="text" value={{ ex }} readonly></center></p>
+        {% endfor %}
+
+        <hr>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</form>
+
+<script src="{% static 'radi/staff_create.js' %}"></script>

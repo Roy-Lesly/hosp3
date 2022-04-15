@@ -1,0 +1,88 @@
+{% load static %}
+
+{% block html %}
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+{% block head %}
+   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'dashboard/images/favicon.png' %}">
+    {% if title %}
+      <title>{{ page_title }}</title>
+    {% else %}
+      <title>Django</title>
+    {% endif %}
+
+   {% block head_links %}
+   {% endblock %}
+
+    <link href="{% static 'dashboard/css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'dashboard/css/style.min.css' %}" rel="stylesheet"/>
+
+   {% block extra_style %}
+   {% endblock extra_style %}
+
+</head>
+{% endblock head %}
+   
+   {% block body %}
+   
+    <body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css' %} -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+         {% include 'radi/includes/header.html' %}
+         {% include 'radi/includes/usidebar.html' %}
+          <div class="page-wrapper">
+           {% block content %}{% endblock content %}
+
+              <!-- MODAL CARD NOTI-->
+              <div class="modal modal-xl" id="modal-noti">
+                    <div class="modal-dialog" style="width: 1000px;">
+                        <div class="modal-content">
+
+                        </div>
+                    </div>
+                </div>
+
+         </div>
+    </div>
+    {% include 'root/includes/footer.html' %}
+    {% block script %}
+    
+        <script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
+        <script src="{% static 'dashboard/js/popper.min.js' %}"></script>
+        <script src="{% static 'dashboard/js/bootstrap.min.js' %}"></script>
+
+        <script src="{% static 'dashboard/js/perfect-scrollbar.jquery.min.js' %}"></script>
+        <script src="{% static 'dashboard/js/sidebarmenu.js' %}"></script>
+        <script src="{% static 'dashboard/js/custom.min.js' %}"></script>
+    
+    {% endblock script %}
+
+
+    {% block extra_script %}
+    {% endblock %}
+
+
+    </body>
+   {% endblock body %}
+
+
+{% endblock html %}

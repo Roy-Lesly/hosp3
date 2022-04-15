@@ -1,0 +1,239 @@
+
+{% extends "root/base.html"%}
+{% load static %}
+
+{% block nav %}
+  <nav id="navbar" class="navbar order-last order-lg-0">
+    <ul>
+      <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
+      <li class="dropdown"><a href="#"><span>Departments</span> <i class="bi bi-chevron-down"></i></a>
+        <ul>
+            <li><a href="{% url 'cons:consWelcome' %}">Consultation</a></li>
+            <li><a href="{% url 'regi:regiWelcome' %}">Registration</a></li>
+            <li><a href="{% url 'mate:mateWelcome' %}">Maternity</a></li>
+            <li><a href="{% url 'radi:radiWelcome' %}">Radiology</a></li>
+            <li><a href="{% url 'phar:pharWelcome' %}">Pharmacy</a></li>
+            <li><a href="{% url 'labo:laboWelcome' %}">Laboratory</a></li>
+            <li><a href="">Ward</a></li>
+            <li><a href="">Technical Service</a></li>
+            <li><a href="">Utilities</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'authentication:logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'authentication:login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+      </li>
+    </ul>
+    <i class="bi bi-list mobile-nav-toggle"></i>
+  </nav><!-- .navbar -->
+{% endblock %}
+
+
+{% block jumbotron %}
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <h1>MEDICAL FOUNDATION</h1>
+      <h2>We are team of talented Health Personels</h2>
+      <a href="#about" class="btn-get-started scrollto">Get Started</a>
+    </div>
+  </section><!-- End Hero -->
+
+{% endblock %}
+
+
+{% block page_content %}
+
+    <!-- ################# Slider Starts Here#######################--->
+<br><br><br><br>
+
+
+    <!-- ################# Key Features Starts Here#######################--->
+    <section class="key-features">
+
+            <div style="padding-left: 50px;">
+                <button href="" data-toggle="modal" data-target="#modalUpdate">modal anchor</button>
+              </div>
+            <div class="modal" role="dialog" tabindex="-1" id="modalUpdate" style="background-color: white;">
+            <div class="modal-dialog">
+              <div class="modal-header">
+                <h5 class="modal-title">Modal Title</h5>
+                <button class="close" type="button" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>Modal Body Here</p>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="button">Save Changes</button>
+              </div>
+            </div>
+          </div>
+
+            <div class="inner-title">
+
+                <h2>Our Services</h2>
+                <p>Take a look at some of our key features</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-key">
+                        <i class="far fa-thumbs-up"></i>
+                        <h5>General Consultation</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut erat nec leo lobortis blandit.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-key">
+                        <i class="fas fa-user-md"></i>
+                        <h5>Orthopedic</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut erat nec leo lobortis blandit.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-key">
+                        <i class="fas fa-briefcase-medical"></i>
+                        <h5>In Patient Services</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut erat nec leo lobortis blandit.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-key">
+                        <i class="fas fa-capsules"></i>
+                        <h5>Pharmacy</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut erat nec leo lobortis blandit.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-key">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                        <h5>Laboratory</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut erat nec leo lobortis blandit.</p>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-key">
+                        <i class="fas fa-hospital-alt"></i>
+                        <h5>Radiology</h5>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut erat nec leo lobortis blandit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ################# Doctors Message Starts Here#######################--->
+    <div class="doctor-message">
+        <div class="inner-lay">
+
+        </div>
+
+    </div>
+
+    <!-- ################# Our Team Starts Here#######################--->
+    <section class="our-team">
+        <div class="container">
+            <div class="inner-title">
+                <h2>Meet our Team</h2>
+                <p>Take a look at our innovative and experiance team</p>
+            </div>
+            <div class="row team-member">
+                <div class="col-md-3 col-sm-6">
+                    <div class="user-card">
+                        <div class="userar">
+                            <img class="teammempic" alt="" src="root/assets/images/team/team-memb1.jpg">
+                        </div>
+                        <div class="detfs">
+                            <p>Mark Frances<i> - MD</i></p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus-g fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-github fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p fa-lg"></i></a></li>
+                            </ul>
+                            <br>
+                            <p >3+ Years of Experiance in PHP with good innovative Ideas</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="user-card">
+                        <div class="userar">
+                            <img class="teammempic" alt="" src="assets/images/team/team-memb2.jpg">
+                        </div>
+                        <div class="detfs">
+                            <p>Mark Frances<i> - MD</i></p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus-g fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-github fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p fa-lg"></i></a></li>
+                            </ul>
+                             <br>
+                            <p >3+ Years of Experiance in PHP with good innovative Ideas</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="user-card">
+                        <div class="userar">
+                            <img class="teammempic" alt="" src="assets/images/team/team-memb3.jpg">
+                        </div>
+                        <div class="detfs">
+                            <p>Mark Frances<i> - MD</i></p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus-g fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-github fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p fa-lg"></i></a></li>
+                            </ul>
+                              <br>
+                            <p >3+ Years of Experiance in PHP with good innovative Ideas</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="user-card">
+                        <div class="userar">
+                            <img class="teammempic" alt="" src="{% static 'root/assets/images/team/team-memb4.jpg' %}">
+                        </div>
+                        <div class="detfs">
+                            <p>Mark Frances<i> - MD</i></p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus-g fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-github fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest-p fa-lg"></i></a></li>
+                            </ul>
+                             <br>
+                            <p >3+ Years of Experiance in PHP with good innovative Ideas</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

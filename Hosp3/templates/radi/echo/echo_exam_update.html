@@ -1,0 +1,107 @@
+{% extends "radi/ubase.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+{% endblock %}
+{% block page_title %}
+ Form
+{% endblock %}
+{% block content %}
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">{{ sub_title }}</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'radi:radiWelcome' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Register Results</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+
+    <!-- PATIENT INFO CARD -->
+    <div class="col-md-12">
+        <div class="card">
+            <form method="post" action="" id="patient-form" class="form-horizontal">
+                 {% csrf_token %}
+                <div class="card-body">
+
+                    <h4 class="card-title">Update Exam</h4>
+                    <div id="div_id_staff" class="form-group">
+                        <label for="id_uexam" class=" requiredField">ECHO EXAM</label>
+                        <div class="">
+                            <select name="uexam" class="select form-control" required id="id_uexam">
+                                <option value={{ form.exam_id }}>{{ form.uexam }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="div_id_uexam" class="form-group">
+                        <label for="id_uexam2" class=" requiredField">BOOK NUMBER</label>
+                        <div class="">
+                            <select name="uexam" class="select form-control" required id="id_uexam2">
+                                <option value={{ form.exam_id }}>{{ form.exam_id }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="div_id_pat" class="form-group">
+                        <label for="id_patient" class=" requiredField">PATIENT</label>
+                        <div class="">
+                            <select name="pat" class="select form-control" required id="id_patient">
+                                <option value={{ form.patient_id }}>{{ form.patient }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="div_id_ward" class="form-group">
+                        <label for="id_ward" class=" requiredField">WARD</label>
+                        <div class="">
+                            <select name="uexam" class="select form-control" required id="id_ward">
+                                <option value={{ form.ward }} selected>{{ form.ward }}</option>
+                                <option value="ANC">ANC</option>
+                                <option value="MAT">Maternity</option>
+                                <option value="LW">Labour / Delivery</option>
+                                <option value="MW">Medical Ward</option>
+                                <option value="SW">Surgical Ward</option>
+                                <option value="CW">Childrens&#x27; Ward</option>
+                                <option value="OPD">OPD</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="div_id_u_test" class="form-group">
+                        <label for="id_pres" class=" requiredField">PRESCRIBER</label>
+                        <div class="">
+                            <input id="id_pres" type="text" class="form-control" value={{ form.prescriber }}>
+                        </div>
+                    </div>
+                    <div id="div_id_id" class="form-group" hidden>
+                        <label for="id_id" class=" requiredField">UFINDING ID</label>
+                        <input value={{ form.findings_id }} name="id" class="select form-control" required id="id_id" readonly>
+                    </div>
+
+                    <div class="card-body">
+                        <button type="submit" id="submit-update-exam" class="btn btn-primary">Update Exam</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block extra_script %}
+    <script src="{% static 'radi/radi_uexam_create.js' %}" defer></script>
+{% endblock %}

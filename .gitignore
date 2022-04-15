@@ -1,0 +1,12 @@
+# Django #
+*.idea
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+
+# Project files and directories
+/Hosp3/settings.py
+/v-hosp3

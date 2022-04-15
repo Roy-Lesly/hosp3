@@ -1,0 +1,28 @@
+{% load static %}
+{% load crispy_forms_tags %}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- RESULT INFORMATION -->
+        <div class="col-md-12" id="card-patient">
+            <div class="card">
+                <form method="post" action="" id="patient-form" class="form-horizontal">
+                     {% csrf_token %}
+                    <div class="card-body">
+                        <h4 class="card-title">OBSTETRIC RESULTS</h4>
+                          {{ form|crispy}}
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="submit" id="submit-obs-form" class="btn btn-primary">Submit Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="{% static 'radi/radi_uresult_create.js' %}" defer></script>

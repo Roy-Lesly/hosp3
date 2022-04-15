@@ -1,0 +1,63 @@
+{% extends 'radi/base_welcome_radi.html'%}
+{% load static %}
+
+{% block page_content %}
+
+    <div class="container-fluid" id="forms">
+      <div class="card card-body" id="staff-form">
+
+        <table class="table table-borderless">
+          <thead class="border-bottom font-weight-bold">
+            <tr>
+              <td>ID</td>
+              <td>TYPE NAME</td>
+              <td>FEES</td>
+              <td>CATEGORY</td>
+              <td>
+                <button class="btn btn-primary show-form">
+                  <span>Add Test</span>
+                </button>
+              </td>
+              <td></td>
+            <tr>
+          </thead>
+          <tbody>
+          {% for type in radi_type %}
+            <tr>
+              <td>{{type.id}}</td>
+              <td>{{type.type_name}}</td>
+              <td>{{type.cost}}</td>
+              <td>{{type.category}}</td>
+              <td>
+                <button class="type-update">
+                  <a href="{% url 'radi:typeUpdate' type.id %}" class="btn text-secondary px-0">
+                  <i class="far fa-edit fa-lg">Update</i>
+                </a>
+                </button>
+              </td>
+              <td>
+                <button class="type-delete">
+                  <a href="{% url 'radi:typeDelete' type.id %}" class="btn text-secondary px-0">
+                  <i class="far fa-edit fa-lg">Delete</i>
+                </a>
+                </button>
+              </td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="modal" id="modal-type">
+        <div class="modal-dialog">
+          <div class="modal-content"></div>
+
+        </div>
+      </div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block tail_js %}
+    <script src="{% static 'radi/radi_type.js' %}"></script>
+{% endblock %}

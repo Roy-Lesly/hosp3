@@ -1,0 +1,36 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" data-url="" action="" class="create-staff" autocomplete="off">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">DELETE RESULT DATA</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h4><center> You Are About To Delete RESULT With Info</center></h4>
+        <label for="result_name">Staff Name</label>
+            <input type="text" value={{ result_delete.staff.full_name }} id="result_name" readonly>
+        <hr>
+        <label for="result_exam">Exam / Book Num</label>
+            <input type="text" value={{ result_delete.lab_exam }} id="result_exam" readonly>
+        <hr>
+        <label for="result_test">Lab Test Item ID</label>
+            <input type="text" value={{ result_delete.lab_test.id }} id="result_test" readonly>
+        <hr>
+        <label for="result_finding">Findings</label>
+            <input type="text" value={{ result_delete.findings }} id="result_finding" readonly>
+        <hr>
+        <label for="result_id" hidden>ID</label>
+            <input type="text" value={{ result_delete.id }} id="result_id" readonly hidden>
+    </div>
+    <div class="modal-footer">
+        <h6><center>Click out of this box To cancel</center></h6>
+        <button type="button" class="btn btn-success" id="submit-delete-result"><i class="fas "></i>Delete</button>
+    </div>
+</form>
+
+{% block custom_js %}
+    <script src="{% static 'labo/labo_result_list.js' %}"></script>
+{% endblock %}

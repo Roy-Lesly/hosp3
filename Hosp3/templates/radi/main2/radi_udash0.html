@@ -1,0 +1,300 @@
+{% extends 'radi/radi_base_udash.html' %}
+{% load static %}
+
+    {% block content %}
+
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+             <div class="page-breadcrumb">
+                <div class="row">
+                    <div class="col-12 d-flex no-block align-items-center">
+                        <h4 class="page-title">Dashboard</h4>
+                        <div class="ml-auto text-right">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'radi:radiWelcome' %}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'radi:echoHomeView' %}">EchoHome</a></li>
+                                    <li class="breadcrumb-item">Dashboard0</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-md-flex align-items-center">
+                                    <div>
+                                        <h4 class="card-title">Echography Analysis</h4>
+                                        <h5 class="card-subtitle">Overview of <code id="id_month"><h3></h3></code></h5>
+                                    </div>
+                                </div>
+                                <!-- CHART 1 -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="flot-chart">
+                                            <div class="flot-chart-content" id="daily-bar-chart">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                        <hr>
+
+                                <!-- CHART 2 -->
+                                <div class="row" hidden>
+                                    <div class="col-lg-12">
+                                        <div class="flot-chart">
+                                            <div class="flot-chart-content" id="exam-bar-chart">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    <!-- column -->
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6 card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="zero_config1" class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="Day">Day</th>
+                                                        <th>1</th>
+                                                        <th>2</th>
+                                                        <th>3</th>
+                                                        <th>4</th>
+                                                        <th>5</th>
+                                                        <th>6</th>
+                                                        <th>7</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Num</td>
+                                                            <td id="d1">/</td>
+                                                            <td id="d2">/</td>
+                                                            <td id="d3">/</td>
+                                                            <td id="d4">/</td>
+                                                            <td id="d5">/</td>
+                                                            <td id="d6">/</td>
+                                                            <td id="d7">/</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amt</td>
+                                                            <td id="A1">/</td>
+                                                            <td id="A2">/</td>
+                                                            <td id="A3">/</td>
+                                                            <td id="A4">/</td>
+                                                            <td id="A5">/</td>
+                                                            <td id="A6">/</td>
+                                                            <td id="A7">/</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="zero_config2" class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="Day">Day</th>
+                                                        <th>8</th>
+                                                        <th>9</th>
+                                                        <th>10</th>
+                                                        <th>11</th>
+                                                        <th>12</th>
+                                                        <th>13</th>
+                                                        <th>14</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Num</td>
+                                                            <td id="d8">/</td>
+                                                            <td id="d9">/</td>
+                                                            <td id="d10">/</td>
+                                                            <td id="d11">/</td>
+                                                            <td id="d12">/</td>
+                                                            <td id="d13">/</td>
+                                                            <td id="d14">/</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amt</td>
+                                                            <td id="A8">/</td>
+                                                            <td id="A9">/</td>
+                                                            <td id="A10">/</td>
+                                                            <td id="A11">/</td>
+                                                            <td id="A12">/</td>
+                                                            <td id="A13">/</td>
+                                                            <td id="A14">/</td>
+                                                        </tr>
+
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="zero_config3" class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="Day">Day</th>
+                                                        <th>15</th>
+                                                        <th>16</th>
+                                                        <th>17</th>
+                                                        <th>18</th>
+                                                        <th>19</th>
+                                                        <th>20</th>
+                                                        <th>21</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Num</td>
+                                                            <td id="d15">/</td>
+                                                            <td id="d16">/</td>
+                                                            <td id="d17">/</td>
+                                                            <td id="d18">/</td>
+                                                            <td id="d19">/</td>
+                                                            <td id="d20">/</td>
+                                                            <td id="d21">/</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amt</td>
+                                                            <td id="A15">/</td>
+                                                            <td id="A16">/</td>
+                                                            <td id="A17">/</td>
+                                                            <td id="A18">/</td>
+                                                            <td id="A19">/</td>
+                                                            <td id="A20">/</td>
+                                                            <td id="A21">/</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="zero_config4" class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="Day">Day</th>
+                                                        <th>22</th>
+                                                        <th>23</th>
+                                                        <th>24</th>
+                                                        <th>25</th>
+                                                        <th>26</th>
+                                                        <th>27</th>
+                                                        <th>28</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Num</td>
+                                                            <td id="d22">/</td>
+                                                            <td id="d23">/</td>
+                                                            <td id="d24">/</td>
+                                                            <td id="d25">/</td>
+                                                            <td id="d26">/</td>
+                                                            <td id="d27">/</td>
+                                                            <td id="d28">/</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amt</td>
+                                                            <td id="A22">/</td>
+                                                            <td id="A23">/</td>
+                                                            <td id="A24">/</td>
+                                                            <td id="A25">/</td>
+                                                            <td id="A26">/</td>
+                                                            <td id="A27">/</td>
+                                                            <td id="A28">/</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 card">
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table id="zero_config5" class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="Day">Day</th>
+                                                        <th>29</th>
+                                                        <th>30</th>
+                                                        <th>31</th>
+                                                        <th>Total</th>
+                                                        <th>Total Days</th>
+                                                        <th>Average</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Num</td>
+                                                            <td id="d29">/</td>
+                                                            <td id="d30">/</td>
+                                                            <td id="d31">/</td>
+                                                            <td id="tot">/</td>
+                                                            <td id="tdays">/</td>
+                                                            <td id="av">/</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Amt</td>
+                                                            <td id="A29">/</td>
+                                                            <td id="A30">/</td>
+                                                            <td id="A31">/</td>
+                                                            <td id="AT">/</td>
+                                                            <td id="A">/</td>
+                                                            <td id="Ae">/</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+    {% endblock content %}
+
+{% block extra_script %}
+
+<script src="{% static 'radi/radi_udash0.js' %}"></script>
+
+{% endblock extra_script %}

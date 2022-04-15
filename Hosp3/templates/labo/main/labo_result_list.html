@@ -1,0 +1,93 @@
+{% extends "labo/base.html" %}
+{% load crispy_forms_tags %}
+{% load i18n %}
+{% load static %}
+
+{% block custom_css %}
+<link href="{% static 'dashboard/css/dataTables.bootstrap4.min.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block page_title %}
+ Tables
+{% endblock %}
+{% block content %}
+
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">{{ sub_title }}</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'labo:laboWelcome' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">List</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Book/Exam #</th>
+                                    <th hidden>Test ID</th>
+                                    <th>Book #/ Patient Name/ Test Item</th>
+                                    <th>Staff</th>
+                                    <th>Paid</th>
+                                    <th>Findings</th>
+                                    <th>Date Created</th>
+                                    <th>Test Cost</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for labResult in result_items %}
+                                    <tr>
+                                      <td>{{ labResult.lab_exam.book_num }}</td>
+                                      <td hidden>{{ labResult.id }}</tdhidden>
+                                      <td>{{ labResult.lab_test }}</td>
+                                      <td>{{ labResult.staff.full_name }}</td>
+                                      <td>{{ labResult.lab_test.paid }}</td>
+                                      <td>{{ labResult.findings }}</td>
+                                      <td>{{ labResult.date_created }}</td>
+                                      <td>{{ labResult.lab_test.ltype.cost }}</td>
+                                      <td><button class="update-result" data-toggle="modal" data-target="#modalUpdate">Edit</button></td>
+                                      <td><button class="delete-result" data-toggle="modal" data-target="#modalDelete">Delete</button></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal-result">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+<script src="{% static 'dashboard/js/datatables.min.js' %}"></script>
+<script src="{% static 'dashboard/js/jquery.dataTables.min.js' %}"></script>
+
+{% block custom.js %}
+<script src="{% static 'labo/labo_result_list.js' %}" defer></script>
+{% endblock %}

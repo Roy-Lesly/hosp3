@@ -1,0 +1,78 @@
+{% extends "radi/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block extra_css %}
+    <style xmlns="http://www.w3.org/1999/html">
+    </style>
+{% endblock %}
+{% block page_title %}
+ Tables
+{% endblock %}
+{% block content %}
+
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-12 d-flex no-block align-items-center">
+                <h4 class="page-title">{{ sub_title }}</h4>
+                <div class="ml-auto text-right">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'radi:radiWelcome' %}">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">List</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ page_title }} PATIENT LIST</h5>
+                        <div class="table-responsive">
+                            <table id="zero_config" class="table table-striped table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Lab #</th>
+                                    <th>First Name</th>
+                                    <th>Last Name</th>
+                                    <th>Age</th>
+                                    <th>Sex</th>
+                                    <th>Phone</th>
+                                    <th>Address</th>
+                                    <th>Date Created</th>
+                                    <th>Edit</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for pat in pats %}
+                                    <tr>
+                                      <td><a href="{% url 'radi:echoPatDetail' pat.un %}"><b><h5>{{ pat.un }}</h5></b></a></td>
+                                      <td>{{ pat.patient.first_name }}</td>
+                                      <td>{{ pat.patient.last_name }}</td>
+                                      <td>{{ pat.patient.age }}</td>
+                                      <td>{{ pat.patient.sex }}</td>
+                                      <td>{{ pat.patient.Phone }}</td>
+                                      <td>{{ pat.patient.address }}</td>
+                                      <td>{{ pat.date_created.date }}</td>
+                                      <td class="">
+                                          <a href="{% url 'labo:laboPatUpdate' %}" class="btn btn-secondary p-1">
+                                              <i class="far fa-edit fa-sm"></i>
+                                          </a>
+                                      </td>
+                                    </tr>
+                                  {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

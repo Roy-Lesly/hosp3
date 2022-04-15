@@ -1,0 +1,89 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" action="" class="create-patient" autocomplete="off">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h5 class="modal-title">UPDATE PATIENT INFORMATION</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        {% csrf_token %}
+        {{ patient_update|crispy }}
+        <!--<form action="">
+            {% csrf_token %}
+            <div id="div_id_first_name" class="form-group">
+                <label for="id_first_name" class="">First name</label>
+                <div class="">
+                    <input type="text" name="first_name" maxlength="10" class="textinput textInput form-control" id="id_first_name">
+                </div>
+            </div>
+            <div id="div_id_last_name" class="form-group">
+                <label for="id_last_name" class=" requiredField">Last name<span class="asteriskField">*</span></label>
+                <div class="">
+                    <input type="text" name="last_name" maxlength="10" class="textinput textInput form-control" required id="id_last_name">
+                </div>
+            </div>
+            <div id="div_id_full_name" class="form-group">
+                <label for="id_full_name" class=" requiredField">Full name<span class="asteriskField">*</span></label>
+                <div class="">
+                    <input type="text" name="full_name" maxlength="25" class="textinput textInput form-control" required id="id_full_name">
+                </div>
+            </div>
+            <div id="div_id_address" class="form-group">
+                <label for="id_address" class=" requiredField">Address<span class="asteriskField">*</span></label>
+                <div class="">
+                    <input type="text" name="address" maxlength="25" class="textinput textInput form-control" required id="id_address">
+                </div>
+            </div>
+            <div id="div_id_sex" class="form-group">
+                <label for="id_sex" class=" requiredField">Sex<span class="asteriskField">*</span></label>
+                <div class="">
+                    <select name="sex" class="select form-control" required id="id_sex">
+                        <option value="" selected>---------</option>
+                        <option value="FEMALE">FEMALE</option>
+                        <option value="MALE">MALE</option>
+                    </select>
+                </div>
+            </div>
+            <div id="div_id_dob" class="form-group">
+                <label for="id_dob" class="">Dob</label>
+                <div class="">
+                    <input type="date" name="dob" class="dateinput form-control" id="id_dob">
+                </div>
+            </div>
+            <div id="div_id_age" class="form-group" hidden>
+                <label for="id_age" class="">Age</label>
+                <div class="">
+                    <input type="text" name="age" maxlength="2" class="textinput textInput form-control" id="id_age">
+                </div>
+            </div>
+            <div id="div_id_Phone" class="form-group">
+                <label for="id_Phone" class=" requiredField">Phone<span class="asteriskField">*</span></label>
+                <div class="">
+                    <input type="text" name="Phone" maxlength="17" class="textinput textInput form-control" required id="id_Phone">
+                </div>
+            </div>
+            <div id="div_id_reg_num" class="form-group">
+                <label for="id_reg_num" class=" requiredField">Register No<span class="asteriskField">*</span></label>
+                <div class="">
+                    <input type="text" name="reg_num" maxlength="10" class="textinput textInput form-control" required id="id_reg_num">
+                </div>
+            </div>
+            <div class="card-body">
+                <button type="submit" class="btn btn-primary">Register Patient</button>
+            </div>
+        </form>-->
+        <br>
+        <label for="id_patient_sn" hidden>ID</label>
+        <input type="text" value={{ patient_id }} id="id_patient_sn" readonly>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" id="submit-update-patient"><i class="fas fa-database"></i>Update</button>
+    </div>
+</form>
+
+{% block custom_js %}
+    <script src="{% static 'regi/regi_pat_create.js' %}"></script>
+{% endblock %}

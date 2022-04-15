@@ -1,0 +1,39 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<form method="post" data-url="{% url 'radi:staffCreate' %}" action="" class="create-staff" autocomplete="off">
+    {% csrf_token %}
+    <div class="modal-header" id="heada1">
+        <h3 class="modal-title"><center>SKIPPED NUMBERS</center></h3>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-header" id="heada2">
+        <h3 class="modal-title"><center>SELECT FORM FOR RESULTS</center></h3>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="row" id="res_confirm">
+            <div class="col-12">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">NO</button>
+            <div class="co-12 row" id="missing"></div>
+        </div>
+        <div class="row" id="res_form">
+            <div class="col p-1"><input class="btn btn-secondary result-form-type" type="button" value="OBSTETRIC"></div>
+            <div class="col p-1"><input class="btn btn-secondary result-form-type" type="button" value="ABDOMINAL"></div>
+            <div class="col p-1"><input class="btn btn-secondary result-form-type" type="button" value="FEMALE PELVIC"></div>
+            <div class="col p-1"><input class="btn btn-secondary result-form-type" type="button" value="MALE PELVIC"></div>
+            <div class="col p-1"><input class="btn btn-secondary result-form-type" type="button" value="SMALL PARTS"></div>
+            <div class="col p-1"><input class="btn btn-secondary result-form-type" type="button" value="CARDIAC"></div>
+            <div class="col p-1"><input class="btn btn-secondary result-form-type" type="button" value="DOPPLER"></div>
+        </div>
+        <hr>
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</form>
+    <script src="{% static 'radi/radi_uresult_create.js' %}" defer></script>
